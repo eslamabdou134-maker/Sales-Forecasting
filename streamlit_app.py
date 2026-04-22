@@ -1,4 +1,4 @@
-streamlit_app.py
+import streamlit as st
 import streamlit as st
 import pandas as pd
 import joblib
@@ -21,4 +21,5 @@ if st.button("Predict"):
     prediction = model.predict(input_data)
     
     st.success(f"The Predicted Result is: {prediction[0]:.2f}")
+
     st.balloons()
