@@ -1,0 +1,19 @@
+Sales Forecasting System
+
+This is an End-to-End Machine Learning Web Application that predicts sales based on input features using a trained regression model.
+
+Project Overview
+- Objective: Build a predictive tool to estimate future sales.
+- Model: Linear Regression (Saved as .pkl file).
+- Interface: Interactive web dashboard built with Streamlit.
+- Deployment: Hosted on Streamlit Cloud.
+
+Tech Stack
+- Language: Python
+- Libraries: Scikit-learn, Pandas, NumPy, Joblib
+- Web Framework: Streamlit
+
+How to Use
+1. Visit the live app here: [https://eslam-sales-forecast.streamlit.app/](https://eslam-sales-forecast.streamlit.app/)
+2. Enter the Unit Price and Marketing Budget.
+3. Click on Generate Prediction to see the estimated sales result.
