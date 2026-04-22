@@ -1,30 +1,24 @@
+streamlit_app.py
 import streamlit as st
 import pandas as pd
 import joblib
-import datetime
 
-# تحميل النموذج
-@st.cache_resource
-def load_model():
-    return joblib.load('sales_forecasting_model.pkl')
+# تحميل الموديل
+model = joblib.load('sales_forecasting_model.pkl')
 
-model = load_model()
+st.title("Sales Forecasting App")
+st.write("Welcome to the prediction app!")
 
-st.title("لوحة توقع مبيعات التجزئة")
+# خانات إدخال البيانات
+val1 = st.number_input("Feature 1 Value", value=0.0)
+val2 = st.number_input("Feature 2 Value", value=0.0)
 
-# مدخلات المستخدم
-target_date = st.date_input("اختر التاريخ للتوقع", datetime.date(2017, 8, 16))
-onpromotion = st.selectbox("هل يوجد عرض ترويجي؟", ["No", "Yes"])
-
-if st.button("عرض التوقعات"):
-    # تحضير البيانات للنموذج
-    input_data = pd.DataFrame({
-        'onpromotion': [1 if onpromotion == "Yes" else 0],
-        'year': [target_date.year],
-        'month': [target_date.month],
-        'day': [target_date.day],
-        'dayofweek': [target_date.weekday()]
-    })
+if st.button("Predict"):
+    # تجهيز البيانات
+    input_data = pd.DataFrame([[val1, val2]], columns=['feature_1', 'feature_2'])
     
+    # التوقع
     prediction = model.predict(input_data)
-    st.success(f"حجم المبيعات المتوقع: {prediction[0]:,.2f}")
+    
+    st.success(f"The Predicted Result is: {prediction[0]:.2f}")
+    st.balloons()
